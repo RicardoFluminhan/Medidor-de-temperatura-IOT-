@@ -1,0 +1,138 @@
+🌡️ Projeto com ESP32: Termômetro e Umidade com DHT11 e LEDs
+Olá, pessoal! 👋
+
+Neste tutorial, vamos criar um projeto super legal e útil usando uma placa ESP32. A ideia é construir uma pequena estação meteorológica que mede a temperatura e a umidade do ambiente. Para deixar tudo mais visual, vamos usar dois LEDs: um azul para indicar temperaturas mais "frias" e um vermelho para as mais "quentes".
+
+É um projeto excelente para iniciantes e uma ótima forma de aprender a usar sensores e atuadores com o ESP32. Vamos lá!
+
+✅ Passo 1: Materiais Necessários
+Para montar este projeto, você vai precisar dos seguintes componentes:
+
+1x Placa de desenvolvimento ESP32 (no nosso caso, usamos um ESP32-WROOM-32)
+
+1x Sensor de temperatura e umidade DHT11 (o componente azul com 3 pinos)
+
+1x LED Azul (5mm ou 3mm)
+
+1x LED Vermelho (5mm ou 3mm)
+
+2x Resistores de 220Ω ou 330Ω (para proteger os LEDs)
+
+1x Protoboard (placa de ensaio)
+
+Fios Jumper (macho-macho)
+
+1x Cabo Micro USB ou USB-C (depende da sua placa ESP32)
+
+🛠️ Passo 2: Montagem do Circuito na Protoboard
+A montagem é a parte mais divertida! Siga os passos com atenção para garantir que tudo funcione direitinho.
+
+Posicione o ESP32: Espete o ESP32 na protoboard, bem no meio, de forma que os pinos de um lado fiquem separados dos pinos do outro pelo canal central.
+
+Alimente a Protoboard:
+
+Use um fio jumper vermelho para conectar o pino 3V3 (ou 3.3V) do ESP32 à linha de alimentação positiva (+) da protoboard.
+
+Use um fio jumper preto para conectar um dos pinos GND (Ground/Terra) do ESP32 à linha de alimentação negativa (-) da protoboard. Agora temos energia disponível em toda a protoboard!
+
+Conecte o Sensor DHT11:
+
+O nosso sensor DHT11 tem 3 pinos. Olhando de frente para a grade dele, os pinos são: VCC (ou +), DATA (ou OUT) e GND (ou -).
+
+Conecte o pino VCC (+) do DHT11 na linha positiva (+) da protoboard.
+
+Conecte o pino GND (-) do DHT11 na linha negativa (-) da protoboard.
+
+Conecte o pino DATA (OUT) ao pino digital D2 do ESP32 usando um fio jumper.
+
+Conecte o LED Azul (Frio):
+
+O LED tem duas perninhas: uma mais longa (Anodo, +) e uma mais curta (Catodo, -).
+
+Espete a perna curta (Catodo) do LED azul na linha negativa (-) da protoboard.
+
+Espete a perna longa (Anodo) em uma fileira vazia da protoboard.
+
+Na mesma fileira da perna longa, conecte uma ponta do resistor de 220Ω.
+
+Conecte a outra ponta do resistor ao pino digital D5 do ESP32 com um fio jumper.
+
+Conecte o LED Vermelho (Quente):
+
+Repita o processo do LED azul.
+
+Espete a perna curta (Catodo) do LED vermelho na linha negativa (-) da protoboard.
+
+Espete a perna longa (Anodo) em outra fileira vazia.
+
+Na mesma fileira da perna longa, conecte uma ponta do outro resistor de 220Ω.
+
+Conecte a outra ponta do resistor ao pino digital D18 do ESP32 com um fio jumper.
+
+Pronto! Sua montagem deve estar parecida com a da foto. Dê uma conferida em todas as conexões.
+
+💻 Passo 3: Preparando o Ambiente de Programação (Arduino IDE)
+Agora vamos preparar o computador para "conversar" com nosso ESP32.
+
+Instale a Arduino IDE: Se você ainda não tem, baixe e instale a Arduino IDE do site oficial.
+
+Adicione o Suporte ao ESP32:
+
+Abra a Arduino IDE. Vá em Arquivo > Preferências.
+
+No campo "URLs Adicionais de Gerenciadores de Placas", cole o seguinte link:
+
+https://dl.espressif.com/dl/package_esp32_index.json
+Clique em OK.
+
+Agora, vá em Ferramentas > Placa > Gerenciador de Placas....
+
+Na barra de busca, digite "esp32" e instale o pacote da Espressif Systems.
+
+Instale a Biblioteca do DHT11:
+
+Para que o código funcione, precisamos de uma biblioteca específica.
+
+Vá em Ferramentas > Gerenciar Bibliotecas....
+
+Na barra de busca, digite "Bonezegei_DHT11".
+
+Encontre a biblioteca na lista e clique em Instalar.
+
+Ambiente configurado! Com o hardware montado e o software pronto, só falta carregar o programa.
+
+🚀 Passo 4: Carregando e Testando
+Com o código do projeto já inserido na sua Arduino IDE, siga estes passos para transferi-lo para a placa.
+
+Conecte o ESP32: Use o cabo USB para conectar o ESP32 ao seu computador.
+
+Configure a IDE:
+
+Vá em Ferramentas > Placa e selecione uma placa ESP32. Uma comum que funciona para a maioria é a "DOIT ESP32 DEVKIT V1".
+
+Vá em Ferramentas > Porta e selecione a porta COM à qual seu ESP32 foi conectado (ex: COM3, COM4, /dev/ttyUSB0).
+
+Carregue o Código: Clique no botão com uma seta para a direita (→) na Arduino IDE para compilar e carregar o programa para a placa. Aguarde o processo terminar.
+
+Teste:
+
+Assim que o código for carregado, o ESP32 vai reiniciar e começar a rodar.
+
+Abra o Monitor Serial clicando no ícone de lupa no canto superior direito da IDE.
+
+Importante: Na parte inferior do Monitor Serial, ajuste a velocidade (baud rate) para 115200.
+
+🎉 Passo 5: Resultado Esperado
+Se tudo deu certo, você verá:
+
+No Monitor Serial: Linhas de texto sendo impressas com os dados de temperatura (em °C e °F) e umidade (em %).
+
+Na Protoboard:
+
+Se a temperatura ambiente estiver abaixo de 23°C, o LED azul estará aceso.  ❄️ 
+
+Se a temperatura ambiente estiver igual ou acima de 23°C, o LED vermelho estará aceso. 🔴
+
+Você pode testar soprando ar quente no sensor para ver o LED vermelho acender!
+
+E é isso! Agora você tem uma estação de monitoramento de temperatura totalmente funcional. 🤓
